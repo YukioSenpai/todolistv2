@@ -15,12 +15,16 @@ const Ul = styled.ul`
   height: 100%;
 `;
 
-const NavItems = () => {
+const NavItems = ({mobile, clicked}) => {
     return (
-        <Nav>
-            <Ul>
-                <NavItem link="/">home</NavItem>
-                <NavItem link="todos">Todos</NavItem>
+        <Nav mobile={mobile}>
+            <Ul mobile={mobile}>
+                <NavItem clicked={clicked} mobile={mobile} link="/">
+                  home
+                </NavItem>
+                <NavItem clicked={clicked} mobile={mobile} link="/todos">
+                  Todos
+                </NavItem>
             </Ul>
         </Nav>
     );
