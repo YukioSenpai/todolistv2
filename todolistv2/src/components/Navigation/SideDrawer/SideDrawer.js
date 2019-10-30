@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Logo from '../../Logo/Logo';
 import NavItems from '../../NavItems/NavItems';
 import Hamburger from '../SideDrawer/Hamburger/Hamburger';
-import NavItem from '../../NavItems/NavItem/NavItem';
 
 const FixedWrapper = styled.header`
   position: fixed;
