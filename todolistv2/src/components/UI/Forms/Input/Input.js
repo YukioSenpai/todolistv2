@@ -8,7 +8,7 @@ const InputWrapper = styled.div`
     flex-direction: column;
 
     &:not(:last-child) {
-        margin-bottom: 3rem;
+        margin-bottom: 4.5rem;
     }
 `;
 

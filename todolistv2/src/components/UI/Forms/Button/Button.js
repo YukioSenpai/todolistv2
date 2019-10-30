@@ -26,9 +26,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, ...rest }) => {
+const Button = ({ children, disabled, ...rest }) => {
   return (
-    <StyledButton {...rest}>
+    <StyledButton disabled={disabled} {...rest}>
       {children}
     </StyledButton>
   );
