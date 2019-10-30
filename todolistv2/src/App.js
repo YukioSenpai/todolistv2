@@ -4,6 +4,7 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import Layout from './hoc/layout/Layout';
 import Home from './containers/Home/Home';
 import Todos from './containers/Todos/Todos';
+import Login from './containers/Auth/Login/Login';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/todos" component={Todos} />
+        <Route exact path="/login" component={Login} />
         <Redirect to="/" />
       </Switch>
     </Layout>
