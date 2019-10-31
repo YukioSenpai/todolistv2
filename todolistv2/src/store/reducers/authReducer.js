@@ -1,5 +1,24 @@
-const initialSate = {};
+import * as actions from '../actions/actionTypes'
 
-export default (state = initialSate, action) => {
-    return 'just temporary';
+const initialSate = {
+    error: null,
+    loading: false,
+};
+
+export default (state = initialSate, {type, payload}) => {
+    switch (type) {
+        case actions.AUTH_START:
+            return {...state, loading: true};
+        
+        case actions.AUTH_END:
+            return {...state, loading: false};
+            
+        case actions.AUTH_FAIL:
+            return {...state, error: payload};        
+        
+        case actions.AUTH_SUCCESS:
+            return {...state, error: false};  
+        default:
+            return state;
+    }
 };

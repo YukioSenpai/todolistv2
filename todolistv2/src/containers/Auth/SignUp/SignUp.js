@@ -2,13 +2,20 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Formik, Field} from 'formik';
 import * as Yup from 'yup';
+import styled from 'styled-components';
 
 import {FormWrapper, StyledForm} from '../../../hoc/layout/elements';
 import Input from '../../../components/UI/Forms/Input/Input';
 import Button from '../../../components/UI/Forms/Button/Button';
 import Heading from '../../../components/UI/Headings/Heading';
+import Message from '../../../components/UI/Message/Message';
 
 import * as actions from '../../../store/actions';
+
+const MessageWrapper = styled.div`
+    position: absolute;
+    bottom: 0;
+`;
 
 const SignUpSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -30,7 +37,7 @@ const SignUpSchema = Yup.object().shape({
     .required('You need to confirm your password'),
 });
 
-const SignUp = ({signUp}) => {
+const SignUp = ({signUp, loading, error}) => {
     return (
         <Formik
         initialValues={{
@@ -42,7 +49,7 @@ const SignUp = ({signUp}) => {
         }}
         validationSchema={SignUpSchema}
         onSubmit={async (values, { setSubmitting }) => {
-            signUp(values);
+            await signUp(values);
             setSubmitting(false);
             }}
         >
@@ -85,7 +92,18 @@ const SignUp = ({signUp}) => {
                         placeholder="Confirm your password"
                         component={Input}
                     />
-                    <Button disabled={!isValid} type="submit">SignUp</Button>
+                    <Button 
+                    disabled={!isValid || isSubmitting} 
+                    loading={loading ? 'Signing up...' : null} 
+                    type="submit"
+                    >
+                        SignUp
+                    </Button>
+                    <MessageWrapper>
+                        <Message error show={error}>
+                            {error}
+                        </Message>
+                    </MessageWrapper>
                 </StyledForm>
             </FormWrapper>
         )}
@@ -93,7 +111,10 @@ const SignUp = ({signUp}) => {
     );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = ({auth}) => ({
+    loading: auth.loading,
+    error: auth.error,
+});
 
 const mapDispatchToProps = {
     signUp: actions.signUp
