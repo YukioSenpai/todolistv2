@@ -26,7 +26,6 @@ const Login = () => {
         validationSchema={LoginSchema}
         onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(false);
-            console.log(values);
             }}
         >
         {({isSubmitting, isValid}) => (

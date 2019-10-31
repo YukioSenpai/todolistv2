@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Formik, Field} from 'formik';
 import * as Yup from 'yup';
 
@@ -6,6 +7,8 @@ import {FormWrapper, StyledForm} from '../../../hoc/layout/elements';
 import Input from '../../../components/UI/Forms/Input/Input';
 import Button from '../../../components/UI/Forms/Button/Button';
 import Heading from '../../../components/UI/Headings/Heading';
+
+import * as actions from '../../../store/actions';
 
 const SignUpSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -21,13 +24,13 @@ const SignUpSchema = Yup.object().shape({
     .required('The email is required.'),
     password: Yup.string()
     .required('The password is required')
-    .min(4, 'Too short.'),
+    .min(8, 'Too short.'),
     confirmPassword: Yup.string()
      .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('You need to confirm your password'),
 });
 
-const SignUp = () => {
+const SignUp = ({signUp}) => {
     return (
         <Formik
         initialValues={{
@@ -39,8 +42,8 @@ const SignUp = () => {
         }}
         validationSchema={SignUpSchema}
         onSubmit={async (values, { setSubmitting }) => {
+            signUp(values);
             setSubmitting(false);
-            console.log(values);
             }}
         >
         {({isSubmitting, isValid}) => (
@@ -90,4 +93,13 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = {
+    signUp: actions.signUp
+};
+
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(SignUp);
