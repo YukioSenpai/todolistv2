@@ -15,8 +15,7 @@ const App = ({loggedIn}) => {
   if (loggedIn) {
     routes = (
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/todos" component={Todos} />
+        <Route exact path="/" component={Todos} />
         <Route exact path="/logout" component={Logout} />
         <Redirect to="/" />  
       </Switch>
@@ -25,10 +24,9 @@ const App = ({loggedIn}) => {
   else {
     routes = (
       <Switch>
-        <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
-        <Redirect to="/" /> 
+        <Redirect to="/login" /> 
       </Switch>
     );
   }
