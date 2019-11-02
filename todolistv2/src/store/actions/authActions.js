@@ -60,3 +60,33 @@ export const signIn = data => async (dispatch, getState, { getFirebase }) => {
 export const clean = () => ({
     type: actions.CLEAN_UP,
 });
+
+// Verify email actionTypes
+export const verifyEmail = () => async (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+    dispatch({type: actions.VERIFY_START})
+    try {
+        const user = firebase.auth().currentUser;
+        await user.sendEmailVerification();
+        dispatch({type: actions.VERIFY_SUCCESS})
+    } catch(err) {
+        dispatch({type: actions.VERIFY_FAIL, payload: err.message});
+    }
+};  
+
+// Send recover password
+export const recoverPassword = data => async (
+    dispatch,
+    getState,
+    { getFirebase }
+  ) => {
+    const firebase = getFirebase();
+    dispatch({ type: actions.RECOVERY_START });
+    try {
+      // send email here
+      await firebase.auth().sendPasswordResetEmail(data.email);
+      dispatch({ type: actions.RECOVERY_SUCCESS });
+    } catch (err) {
+      dispatch({ type: actions.RECOVERY_FAIL, payload: err.message });
+    }
+  };

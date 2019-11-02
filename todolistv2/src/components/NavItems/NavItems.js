@@ -43,6 +43,9 @@ const NavItems = ({mobile, clicked, loggedIn}) => {
           <NavItem clicked={clicked} mobile={mobile} link="/signup">
             Sign Up
           </NavItem>
+          <NavItem clicked={clicked} mobile={mobile} link="/recover">
+            Recover pwd
+          </NavItem>
         </Ul>
       </>
     );
