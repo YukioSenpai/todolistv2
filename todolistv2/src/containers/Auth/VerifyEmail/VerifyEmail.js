@@ -23,6 +23,10 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+const refreshPage = () => {
+    window.location.reload(); 
+}
+
 const VerifyEmail = ({sendVerification, loading, error, cleanUp}) => {
 
     useEffect(() => {
@@ -43,9 +47,13 @@ const VerifyEmail = ({sendVerification, loading, error, cleanUp}) => {
                 <Button
                 loading={loading ? 'Sending email...' : null}
                 disabled={loading}
-                onClick={() => sendVerification()}
+                onClick={() => sendVerification(), refreshPage}
                 >
                 Re-send verification email
+                </Button>
+                <Button onClick={refreshPage}
+                >
+                Click here when your account is verified
                 </Button>
                 <MessageWrapper>
                     <Message error show={error}>

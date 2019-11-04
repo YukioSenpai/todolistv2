@@ -16,7 +16,7 @@ import * as actions from '../../../store/actions';
 
 const MessageWrapper = styled.div`
   position: absolute;
-  bottom: -2rem;
+  bottom: 2rem;
   width: 100%;
   padding: 0 3rem;
 `;
