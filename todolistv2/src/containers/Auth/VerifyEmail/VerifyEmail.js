@@ -47,7 +47,7 @@ const VerifyEmail = ({sendVerification, loading, error, cleanUp}) => {
                 <Button
                 loading={loading ? 'Sending email...' : null}
                 disabled={loading}
-                onClick={() => sendVerification(), refreshPage}
+                onClick={() => sendVerification()}
                 >
                 Re-send verification email
                 </Button>
