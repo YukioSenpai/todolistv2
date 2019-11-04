@@ -10,7 +10,7 @@ import Message from '../../../components/UI/Message/Message';
 import Heading from '../../../components/UI/Headings/Heading';
 import Input from '../../../components/UI/Forms/Input/Input';
 import Button from '../../../components/UI/Forms/Button/Button';
-/*import Modal from '../../../components/UI/Modal/Modal';*/
+import Modal from '../../../components/UI/Modal/Modal';
 
 import * as actions from '../../../store/actions';
 
@@ -80,6 +80,8 @@ const Profile = ({
       cleanUp();
     };
   }, [cleanUp]);
+
+  const [modalOpened, setModalOpened] = useState(false);
 
   if (!firebase.profile.isLoaded) return null;
 
@@ -155,10 +157,40 @@ const Profile = ({
                   Profile was updated !
                 </Message>
               </MessageWrapper>
+              <DeleteWrapper onClick={() => setModalOpened(true)}>
+                Delete my account
+              </DeleteWrapper>
             </StyledForm>
           </FormWrapper>
         )}
       </Formik>
+      <Modal opened={modalOpened} close={() => setModalOpened(false)}>
+        <Heading noMargin size="h1" color="white">
+          Delete your account
+        </Heading>
+        <Heading bold size="h4" color="white">
+          Do you really want to delete your account?
+        </Heading>
+        <ButtonsWrapper>
+          <Button
+            contain
+            onClick={() => deleteUser()}
+            color="red"
+            disabled={loadingDelete}
+            loading={loadingDelete ? 'Deleting...' : null}
+          >
+            Delete
+          </Button>
+          <Button color="main" contain onClick={() => setModalOpened(false)}>
+            Cancel
+          </Button>
+        </ButtonsWrapper>
+        <MessageWrapper>
+          <Message error show={errorDelete}>
+            {errorDelete}
+          </Message>
+        </MessageWrapper>
+      </Modal>
     </>
   );
 };
@@ -167,11 +199,14 @@ const mapStateToProps = ({ firebase, auth }) => ({
   firebase,
   loading: auth.profileEdit.loading,
   error: auth.profileEdit.error,
+  loadingDelete: auth.deleteUser.loading,
+  errorDelete: auth.deleteUser.error,
 });
 
 const mapDispatchToProps = {
   editProfile: actions.editProfile,
   cleanUp: actions.clean,
+  deleteUser: actions.deleteUser,
 };
 
 export default connect(

@@ -15,6 +15,10 @@ const initialSate = {
         error: null,
         loading: false,
     },
+    deleteUser: {
+        error: null,
+        loading: false,
+    },
 };
 
 export default (state = initialSate, {type, payload}) => {
@@ -36,6 +40,11 @@ export default (state = initialSate, {type, payload}) => {
                 },
                 profileEdit: {
                     ...state.profileEdit,
+                    loading: false,
+                    error: null
+                },
+                deleteUser: {
+                    ...state.deleteUser,
                     loading: false,
                     error: null
                 }
@@ -100,6 +109,16 @@ export default (state = initialSate, {type, payload}) => {
             return {
                 ...state, 
                 profileEdit: {...state.profileEdit, loading: false, error: payload},
+            };
+        case actions.DELETE_START:
+            return {
+                ...state, 
+                deleteUser: {...state.deleteUser, loading: true},
+            };
+        case actions.DELETE_FAIL:
+            return {
+                ...state, 
+                deleteUser: {...state.deleteUser, loading: false, error: payload},
             };
         default:
             return state;
