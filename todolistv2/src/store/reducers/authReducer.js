@@ -11,6 +11,10 @@ const initialSate = {
         error: null,
         loading: false,
     },
+    profileEdit: {
+        error: null,
+        loading: false,
+    },
 };
 
 export default (state = initialSate, {type, payload}) => {
@@ -30,6 +34,11 @@ export default (state = initialSate, {type, payload}) => {
                     loading: false,
                     error: null
                 },
+                profileEdit: {
+                    ...state.profileEdit,
+                    loading: false,
+                    error: null
+                }
             };
 
         case actions.AUTH_START:
@@ -76,6 +85,21 @@ export default (state = initialSate, {type, payload}) => {
             return {
                 ...state, 
                 recoverPassword: {...state.recoverPassword, loading: false, error: payload},
+            };
+        case actions.PROFILE_EDIT_START:
+            return {
+                ...state, 
+                profileEdit: {...state.profileEdit, loading: true},
+            };
+        case actions.PROFILE_EDIT_SUCCESS:
+            return {
+                ...state, 
+                profileEdit: {...state.profileEdit, loading: false, error: false},
+            };
+        case actions.PROFILE_EDIT_FAIL:
+            return {
+                ...state, 
+                profileEdit: {...state.profileEdit, loading: false, error: payload},
             };
         default:
             return state;

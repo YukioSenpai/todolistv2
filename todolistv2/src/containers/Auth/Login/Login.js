@@ -13,7 +13,7 @@ import Message from '../../../components/UI/Message/Message';
 
 const MessageWrapper = styled.div`
     position: absolute;
-    bottom: 0;
+    bottom: -2rem;
 `;
 
 const LoginSchema = Yup.object().shape({
@@ -25,7 +25,7 @@ const LoginSchema = Yup.object().shape({
     .min(8, 'Too short.'),
 });
 
-const Login = ({login, loading, error, cleanUp}) => {
+const Login = ({signIn, loading, error, cleanUp}) => {
     useEffect(() => {
         return () => {
             cleanUp();
@@ -40,7 +40,7 @@ const Login = ({login, loading, error, cleanUp}) => {
         }}
         validationSchema={LoginSchema}
         onSubmit={async (values, { setSubmitting }) => {
-            await login(values);
+            await signIn(values);
             setSubmitting(false);
             }}
         >
@@ -86,13 +86,13 @@ const Login = ({login, loading, error, cleanUp}) => {
 
 const mapStateToProps = (auth) => ({
     loading: auth.loading,
-    error: auth.error
+    error: auth.error,
 })
 
 const mapDispatchToProps = {
-    login: actions.signIn,
-    cleanUp: actions.clean
+    signIn: actions.signIn,
+    cleanUp: actions.clean,
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps) (Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
