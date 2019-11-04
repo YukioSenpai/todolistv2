@@ -3,7 +3,6 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './hoc/layout/Layout';
-import Home from './containers/Home/Home';
 import Todos from './containers/Todos/Todos';
 import Login from './containers/Auth/Login/Login';
 import SignUp from './containers/Auth/SignUp/SignUp';
@@ -20,6 +19,7 @@ const App = ({loggedIn, emailVerified}) => {
     routes = (
       <Switch>
         <Route exact path="/verify-email" component={VerifyEmail} />
+        <Route exact path="/profile" component={Profile} />
         <Route exact path="/logout" component={Logout} />
         <Redirect to="/verify-email" />
       </Switch>
