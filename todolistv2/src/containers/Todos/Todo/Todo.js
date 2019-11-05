@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import {FiEdit} from 'react-icons/fi';
+import {MdDeleteForever} from 'react-icons/md';
 import DeleteTodo from './DeleteTodo/DeleteTodo';
 import InputTodo from '../InputTodo/InputTodo';
 
@@ -30,13 +31,13 @@ const Controls = styled.div`
 
 const editStyles = {
   color: 'var(--color-main)',
-  margin: '0 .5rem',
+  margin: '0 1rem',
   cursor: 'pointer',
 };
 
 const deleteStyles = {
   color: 'var(--color-errorRed)',
-  margin: '0 .5rem',
+  margin: '1.65 .2rem',
   cursor: 'pointer',
 };
 
@@ -48,16 +49,15 @@ const Todo = ({ todo }) => {
     <Wrapper>
       {todo.todo}
       <Controls>
-        <i
-          className="fas fa-edit"
-          style={editStyles}
-          onClick={() => setIsEditing(true)}
-        />
-        <i
-          className="fas fa-trash-alt"
-          style={deleteStyles}
-          onClick={() => setisDeleting(true)}
-        />
+        <span>
+          <FiEdit style={editStyles} size={13}
+            onClick={() => setIsEditing(true)}/>
+        </span>
+        <span>
+          <MdDeleteForever
+          style={deleteStyles} size={17}
+          onClick={() => setisDeleting(true)} />
+          </span>
         <DeleteTodo
           todo={todo}
           show={isDeleting}
