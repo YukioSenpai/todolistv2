@@ -1,5 +1,5 @@
  
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 

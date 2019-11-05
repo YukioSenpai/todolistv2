@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './hoc/layout/Layout';
-import Todos from './containers/Todos/Todos';
 import Login from './containers/Auth/Login/Login';
 import SignUp from './containers/Auth/SignUp/SignUp';
 import Logout from './containers/Auth/Logout/Logout';
 import VerifyEmail from './containers/Auth/VerifyEmail/VerifyEmail';
 import RecoverPassword from './containers/Auth/RecoverPassword/RecoverPassword';
 import Profile from './containers/Auth/Profile/Profile';
+const Todos = React.lazy(() => import('./containers/Todos/Todos'));
 
 const App = ({loggedIn, emailVerified}) => {
 
@@ -28,12 +28,14 @@ const App = ({loggedIn, emailVerified}) => {
 
   else if (loggedIn && emailVerified) {
     routes = (
-      <Switch>
-        <Route exact path="/" component={Todos} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/logout" component={Logout} />
-        <Redirect to="/" />  
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route exact path="/" component={Todos} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/logout" component={Logout} />
+          <Redirect to="/" />  
+        </Switch>
+      </Suspense>
     );
   }
   else {
