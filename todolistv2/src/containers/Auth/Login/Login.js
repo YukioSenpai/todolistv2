@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import {Formik, Field} from 'formik';
 import * as Yup from 'yup';
 import * as actions from '../../../store/actions';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
+import '../../../../src/App.css';
 
 import {FormWrapper, StyledForm} from '../../../hoc/layout/elements';
 import Input from '../../../components/UI/Forms/Input/Input';
@@ -25,13 +27,29 @@ const LoginSchema = Yup.object().shape({
     .min(8, 'Too short.'),
 });
 
+const RecoverPassword = styled.div`
+  cursor: pointer;
+  color: var(--color-whiteColor);
+  color: inherit;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  transition: all 0.2s;
+  &:hover {
+    transform: translateY(-3px);
+  }
+  &:active {
+    transform: translateY(2px);
+  }
+`;
+
 const Login = ({signIn, loading, error, cleanUp}) => {
     useEffect(() => {
         return () => {
             cleanUp();
         };
     }, [cleanUp]);
-
+    
     return (
         <Formik
         initialValues={{
@@ -47,10 +65,10 @@ const Login = ({signIn, loading, error, cleanUp}) => {
         {({isSubmitting, isValid}) => (
             <FormWrapper>
                 <Heading noMargin size="h1" color="white">
-                    Login into your account
+                    Welcome
                 </Heading>
                 <Heading bold size="h4" color="white">
-                    Enter your email and password to login
+                    I'm happy to see you again <span role="img" aria-label="smiley">🙂</span>
                 </Heading>
                 <StyledForm>
                     <Field 
@@ -77,6 +95,14 @@ const Login = ({signIn, loading, error, cleanUp}) => {
                             {error}
                         </Message>
                     </MessageWrapper>
+                    <RecoverPassword>
+                        <Link 
+                            to={'/recover'} 
+                            className="a"
+                        >
+                            Change your password
+                        </Link>
+                    </RecoverPassword>
                 </StyledForm>
             </FormWrapper>
         )}

@@ -15,7 +15,6 @@ export const addTodo = data => async (dispatch, getState, { getFirestore }) => {
       todo: data.todo,
     };
     if (!res.data()) {
-      console.log('got here');
       firestore
         .collection('todos')
         .doc(userId)

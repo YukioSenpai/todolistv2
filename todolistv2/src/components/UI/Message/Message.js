@@ -10,7 +10,7 @@ const P = styled.p`
     else return 'var(--color-main)';
   }};
   opacity: ${({ show }) => (show ? '1' : '0')};
-  visibility: ${({ show }) => (show ? 'visibile' : 'hidden')};
+  transform: translateY(${({ show }) => (show ? '30px' : '0px')});
   text-align: center;
   transition: all 0.2s;
 `;

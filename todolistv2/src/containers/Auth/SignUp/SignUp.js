@@ -65,7 +65,7 @@ const SignUp = ({signUp, loading, error, cleanUp}) => {
                     Sign up for an account
                 </Heading>
                 <Heading bold size="h4" color="white">
-                    Enter an email & password to register
+                    I'm happy to see you stranger <span role="img" aria-label="smiley">🙂</span>
                 </Heading>
                 <StyledForm>
                     <Field 
