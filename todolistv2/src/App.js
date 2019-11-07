@@ -6,6 +6,7 @@ import Layout from './hoc/layout/Layout';
 import Login from './containers/Auth/Login/Login';
 import SignUp from './containers/Auth/SignUp/SignUp';
 import Logout from './containers/Auth/Logout/Logout';
+import Home from './containers/Home/Home';
 import VerifyEmail from './containers/Auth/VerifyEmail/VerifyEmail';
 import RecoverPassword from './containers/Auth/RecoverPassword/RecoverPassword';
 import Profile from './containers/Auth/Profile/Profile';
@@ -21,6 +22,7 @@ const App = ({loggedIn, emailVerified}) => {
         <Route exact path="/verify-email" component={VerifyEmail} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/logout" component={Logout} />
+        <Route exact path="/home" component={Home} />
         <Redirect to="/verify-email" />
       </Switch>
     );
@@ -33,6 +35,7 @@ const App = ({loggedIn, emailVerified}) => {
           <Route exact path="/" component={Todos} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/logout" component={Logout} />
+          <Route exact path="/home" component={Home} />
           <Redirect to="/" />  
         </Switch>
       </Suspense>
@@ -44,6 +47,7 @@ const App = ({loggedIn, emailVerified}) => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/recover" component={RecoverPassword} />
+        <Route exact path="/home" component={Home} />
         <Redirect to="/login" /> 
       </Switch>
     );

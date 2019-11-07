@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from './zelda.png'
+import {useHistory} from 'react-router-dom';
+import gif from './giphy.gif';
 
 const LogoWrapper = styled.div`
   color: var(--color-white);
@@ -13,7 +14,16 @@ const LogoWrapper = styled.div`
 `;
 
 const Logo = () => {
-  return <LogoWrapper><img src={logo} alt="Todoistv2" width="64px"/></LogoWrapper>;
+
+  const history = useHistory();
+
+  function handleClick() {
+    history.push("/home");
+  }
+
+  return <LogoWrapper>
+            <img src={gif} width="64px" alt="gif" onClick={handleClick} />
+         </LogoWrapper>;
 };
 
 export default Logo;
