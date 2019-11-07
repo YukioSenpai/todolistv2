@@ -1,15 +1,15 @@
 import React from 'react';
 
-import back from './back.png';
+import back from './image/back.png';
 
-import gif from './2.gif';
-import gifMario from './mario.gif';
-import browser from './browser.gif';
-import b1 from './boiteSpe.gif';
-import b from './boite.gif';
-import bv from './bouleVerte.gif';
-import m from './marron.gif';
-import t from './tube.gif';
+import gif from './image/2.gif';
+import gifMario from './image/mario.gif';
+import browser from './image/browser.gif';
+import b1 from './image/boiteSpe.gif';
+import b from './image/boite.gif';
+import bv from './image/bouleVerte.gif';
+import m from './image/marron.gif';
+import t from './image/tube.gif';
 
 import styled from 'styled-components';
 
